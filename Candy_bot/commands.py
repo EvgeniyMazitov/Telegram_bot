@@ -50,12 +50,14 @@ async def enemy_turn(player):
     total_count = model.get_total_candies()
     max_take = model.get_max_take()
     difficult = model.get_difficult()
+    good_choice = (total_count - 1) % max_take
     if total_count <= max_take:
         enemy_take = total_count
+    elif difficult == 1 and good_choice!=0:
+        enemy_take = good_choice
+    elif difficult == 1 and good_choice ==0:
+        enemy_take = random.randint(1, max_take)
     else:
-        if difficult == 1:
-            enemy_take = (total_count - 1) % max_take
-        else:
             enemy_take = random.randint(1, max_take)
     total = total_count - enemy_take
     await bot.send_message(player.id, f'Бот взял {enemy_take} конфет, '
