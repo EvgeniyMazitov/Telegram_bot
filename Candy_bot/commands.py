@@ -74,3 +74,20 @@ async def set_total_candies(message: types.Message):
     model.set_total_candies(count)
     await bot.send_message(message.from_user.id, f'Максимально количество конфет изменили на'
                                                  f' {count}')
+
+async def set_max_take(message: types.Message):
+
+    count = int((message.text).split(" ")[1])
+    model.set_max_take(count)
+    await bot.send_message(message.from_user.id, f'Максимально количество конфет за ход изменили на'
+                                                 f' {count}')
+
+async def set_difficult(message: types.Message):
+
+    count = int((message.text).split(" ")[1])
+    model.set_difficult(count)
+    await bot.send_message(message.from_user.id, f'Сложность изменили на'
+                                                 f' {count}')
+
+# async def help(message: types.Message):
+#     await view.help(message)
